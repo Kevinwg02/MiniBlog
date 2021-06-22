@@ -1,0 +1,65 @@
+a{
+    text-decoration: none;
+}
+body {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 50px;
+    padding: 1em;
+    text-align: center;
+    background-image: linear-gradient(to right, #0e76a7 , #9b001a);
+}
+
+h1 {
+    color: mintcream;
+    text-align: center;
+    top: 50%;
+    text-decoration: none;
+    transition: all 1.0s linear;
+    transform: translateY(100px);
+}
+
+
+.container {
+    width: 50rem;
+    height: 40rem;
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transition: all 2.0s ease;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+.login {
+    text-align: center;
+    border-radius: 20px;
+    border: solid;
+    border: 3.5px solid black;
+    outline: none;
+    width: 25ch;
+    height: 5ch;
+}
+
+.password {
+    text-align: center;
+    border-radius: 20px;
+    border: solid;
+    border: 3.5px solid black;
+    outline: none;
+    width: 25ch;
+    height: 5ch;
+
+}
+
+
+.loginbtn {
+    border-radius: 20px;
+    border: solid;
+    width: 25ch;
+    height: 5ch;
+    cursor: pointer;
+}
+
+.loginbtn:hover{
+    background: #f16304;
+    color: white;
+}
