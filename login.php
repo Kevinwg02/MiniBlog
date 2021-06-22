@@ -26,7 +26,6 @@
 		@$login = $_POST["login"];
 		@$pass = md5($_POST["pass"]);
 		@$valider = $_POST["valider"];
-		$erreur = "nope";
 		// pour savoir qui sont les utilisateurs
 		if (isset($valider)) {
 			// inclure le fichier ou ce trouve informations de connection a la base de donnée 

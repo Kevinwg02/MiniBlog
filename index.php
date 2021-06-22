@@ -88,13 +88,11 @@
         <div class="bar" id="blackbar"></div>
 
         <script src="frontoffice/js/darkmode.js" type="text/javascript"></script>
-        <!-- <script src="frontoffice/js/show.js" type="text/javascript"> </script> -->
-
     </section>
 
     <!-- section: presse: title/date/text/img -->
     <section class="container">
-    <h1 class="project-title"> MINI BLOG</h1>
+      <h1 class="project-title"> MINI BLOG</h1>
         <!-- tableau affichage -->
         <?php foreach ($articles as $articles) : ?>
             <!-- on bloque tout dans une boite -->
