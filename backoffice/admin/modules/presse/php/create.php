@@ -17,7 +17,7 @@ if (!empty($_POST)) {
 
     // message de sortie
     $msg = 'Created Successfully!';
-// insertion du chemin dans une variable puis concatenation de la variable avec l'image en question (le titre)
+    // insertion du chemin dans une variable puis concatenation de la variable avec l'image en question (le titre)
     $imgpath = 'backoffice/admin/modules/presse/img/' . $img;
     // execute toute cette partie insertion
     $stmt->execute([$id, $title, $text, $created, $imgpath]);
@@ -32,6 +32,15 @@ if (!empty($_POST)) {
 <div class="content update">
     <h2>Create Contact</h2>
     <!-- formulaire de recuperation des informations a inscrire dans la BDD -->
+    <div class="imguploadfolder">
+
+
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+                Select image to upload:<br><br>
+                <input type="file" name="fileToUpload" id="fileToUpload">
+                <input type="submit" value="Upload Image" >
+            </form>
+        </div>
     <!-- Page utiliser + la methode -->
     <form action="create.php" method="post">
 
@@ -51,15 +60,19 @@ if (!empty($_POST)) {
             <!-- et nous affichons un apperçus ici -->
             <input class="pick" type="file" name="img" id="img" accept="" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
         </div>
-
+    
         <label for="text">date</label>
         <label for="text">texte</label>
-<!-- un calendrier est afficher pour selectioner la date -->
-        <input type="datetime-local" name="created" value="<?= date('Y-m-d\TH:i') ?>" id="dat" id="created"><br>
-        <input type="text" name="text" id="text" class="Inputpara">
 
-<!-- bouton pour envoyer tout le formulaire () -->
-        <input type="submit" value="Create">
+        <!-- un calendrier est afficher pour selectioner la date -->
+
+        <input type="datetime-local" name="created" value="<?= date('Y-m-d\TH:i') ?>" id="dat" id="created"><br>
+
+        <input type="text" name="text" id="text" class="Inputpara">
+        <script src="../../../../admin/js/count.js"></script>
+
+        <!-- bouton pour envoyer tout le formulaire () -->
+        <input type="submit" name="submit" value="Create">
     </form>
     <!-- la où afficher le message de succes -->
     <?php if ($msg) : ?>
@@ -68,4 +81,3 @@ if (!empty($_POST)) {
 </div>
 
 <?= module_footer() ?>
-
