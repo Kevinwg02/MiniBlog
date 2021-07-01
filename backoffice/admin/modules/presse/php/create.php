@@ -23,27 +23,25 @@ if (!empty($_POST)) {
     $stmt->execute([$id, $title, $text, $created, $imgpath]);
 }
 ?>
+
+<?php        
+    $uploaddir = '../../../../../backoffice/admin/modules/presse/img/';
+    $uploadfile = $uploaddir . basename($_FILES['img']['name']);
+
+    if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile)) {
+        echo "File is valid, and was successfully uploaded.\n";
+    } else {
+        echo "Upload failed";
+    }
+?>
 <?= module_header('Create') ?>
-
-<style>
-
-</style>
 
 <div class="content update">
     <h2>Create Contact</h2>
     <!-- formulaire de recuperation des informations a inscrire dans la BDD -->
-    <div class="imguploadfolder">
-
-
-            <form action="upload.php" method="post" enctype="multipart/form-data">
-                Select image to upload:<br><br>
-                <input type="file" name="fileToUpload" id="fileToUpload">
-                <input type="submit" value="Upload Image" >
-            </form>
-        </div>
     <!-- Page utiliser + la methode -->
-    <form action="create.php" method="post">
-
+    <form  action="create.php"  method="post" enctype="multipart/form-data">
+    <!--  -->
         <!-- label affiche du texte et input une case a remplir -->
         <!-- chaque ajout ce mets a la suite du precedent -->
         <label for="id">ID</label>
@@ -55,12 +53,11 @@ if (!empty($_POST)) {
         <!-- L'image est selection grace au type "file" ce qui utilise le systeme de explorer de windows pour la simpliciter -->
         <label for="img">Img</label>
         <div class="imgcontent">
-            <!-- l'image arrive ici -->
-            <img id="output" src="" width="150" height="100">
-            <!-- et nous affichons un apperçus ici -->
+                 <!-- et nous affichons un apperçus ici -->
+                 <img id="output" src="" width="auto" height="350">
             <input class="pick" type="file" name="img" id="img" accept="" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
         </div>
-    
+
         <label for="text">date</label>
         <label for="text">texte</label>
 
