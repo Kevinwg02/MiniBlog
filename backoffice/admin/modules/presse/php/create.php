@@ -28,7 +28,7 @@ if(isset($_FILES['img'])){
     $extension = strtolower(end($tabExtension));
 
     $extensions = ['jpg', 'png', 'jpeg', 'gif'];
-    $maxSize = 3000000;
+    $maxSize = 5000000;
 
     if(in_array($extension, $extensions) && $size <= $maxSize && $error == 0){
 
@@ -39,7 +39,7 @@ if(isset($_FILES['img'])){
         // $req = $pdo->prepare('INSERT INTO modulepresse (img) VALUES (?)');
         // $req->execute([$file]);
 
-        echo "Image enregistrée";
+        // echo "Image enregistrée";
     }
     else{
         echo "Une erreur est survenue";
