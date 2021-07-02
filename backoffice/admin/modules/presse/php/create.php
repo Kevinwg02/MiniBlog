@@ -13,51 +13,47 @@ if (!empty($_POST)) {
     $created = isset($_POST['created']) ? $_POST['created'] : date('Y-m-d H:i:s');
     // $img = isset($_POST['img']) ?  $_POST['img'] : '';
     // Inserer dans la table modulepresse
-    $stmt = $pdo->prepare('INSERT INTO modulepresse VALUES (?, ?, ?, ?)');
+    $stmt = $pdo->prepare('INSERT INTO modulepresse VALUES (?, ?, ?, ?, ?)');
 
-    // message de sortie
-    $msg = 'Created Successfully!';
-    // insertion du chemin dans une variable puis concatenation de la variable avec l'image en question (le titre)
-    // $imgpath = 'backoffice/admin/modules/presse/img/' . $img;
-    // execute toute cette partie insertion
-    $stmt->execute([$id, $title, $text, $created]);
-}
-?>
-<!-- , $imgpath -->
 
-<?php
+// start moving files
 
-require './bdd.php';
-
-if(isset($_FILES['file'])){
-    $tmpName = $_FILES['file']['tmp_name'];
-    $name = $_FILES['file']['name'];
-    $size = $_FILES['file']['size'];
-    $error = $_FILES['file']['error'];
+if(isset($_FILES['img'])){
+    $tmpName = $_FILES['img']['tmp_name'];
+    $name = $_FILES['img']['name'];
+    $size = $_FILES['img']['size'];
+    $error = $_FILES['img']['error'];
 
     $tabExtension = explode('.', $name);
     $extension = strtolower(end($tabExtension));
 
     $extensions = ['jpg', 'png', 'jpeg', 'gif'];
-    $maxSize = 1000000;
+    $maxSize = 3000000;
 
     if(in_array($extension, $extensions) && $size <= $maxSize && $error == 0){
 
-        $uniqueName = uniqid('', true);
-        //uniqid génère quelque chose comme ca : 5f586bf96dcd38.73540086
-        $file = $uniqueName.".".$extension;
-        //$file = 5f586bf96dcd38.73540086.jpg
+        $file = $name.".".$extension;
 
-        move_uploaded_file($tmpName, '../../../../../backoffice/admin/modules/presse/img/'.$file);
+        move_uploaded_file($tmpName, '../../../../../backoffice/admin/modules/presse/img/'.$name);
 
-        $req = $db->prepare('INSERT INTO file (name) VALUES (?)');
-        $req->execute([$file]);
+        // $req = $pdo->prepare('INSERT INTO modulepresse (img) VALUES (?)');
+        // $req->execute([$file]);
 
-        // echo "Image enregistrée";
+        echo "Image enregistrée";
     }
     else{
         echo "Une erreur est survenue";
     }
+}
+// end moving files
+
+
+    // message de sortie
+    $msg = 'Created Successfully!';
+    // insertion du chemin dans une variable puis concatenation de la variable avec l'image en question (le titre)
+    $imgpath = 'backoffice/admin/modules/presse/img/' . $name;
+    // execute toute cette partie insertion
+    $stmt->execute([$id, $title, $text, $created, $imgpath]);
 }
 
 ?>
@@ -67,7 +63,7 @@ if(isset($_FILES['file'])){
     <h2>Create Contact</h2>
     <!-- formulaire de recuperation des informations a inscrire dans la BDD -->
     <!-- Page utiliser + la methode -->
-    <form  action="create.php"  method="post" enctype="multipart/form-data">
+    <form  action="create.php"  method="post" enctype="multipart/form-data" >
     <!--  -->
         <!-- label affiche du texte et input une case a remplir -->
         <!-- chaque ajout ce mets a la suite du precedent -->
@@ -82,7 +78,7 @@ if(isset($_FILES['file'])){
         <div class="imgcontent">
                  <!-- et nous affichons un apperçus ici -->
                  <img id="output" src="" width="auto" height="350">
-            <input class="pick" type="file" name="file" id="img" accept="" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+            <input class="pick" type="file"  name="img" id="img" accept="" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
         </div>
 
         <label for="text">date</label>
