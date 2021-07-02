@@ -315,7 +315,9 @@ body.dark label {
 
 
 @media only screen and (max-width:600px) {
-
+    .FluxMain {
+        padding: 20px 0px;
+    }
     .logo {
         float: none;
         text-align: center;
