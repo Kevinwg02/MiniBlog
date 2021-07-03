@@ -100,7 +100,9 @@ h3 {
 
 .Inputpara {
 	margin: 0% 0% 0% 0%;
-	height: 200px;
+	/* height: 200px; */
+	width: 35rem;
+	height: auto;
 }
 
 #dat {
