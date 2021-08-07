@@ -1,0 +1,8 @@
+Deny from all 
+Options -Indexes
+
+
+AuthType Basic
+AuthName "KW"
+AuthUserFile /.htpasswd
+Require valid-user

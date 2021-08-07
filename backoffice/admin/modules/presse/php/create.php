@@ -15,24 +15,25 @@
         $created = isset($_POST['created']) ? $_POST['created'] : date('Y-m-d H:i:s');
         // Inserer dans la table modulepresse
         $stmt = $pdo->prepare('INSERT INTO modulepresse VALUES (?, ?, ?, ?, ?)');
-
-
-        // start moving files
-
+        // deplacement des imgs
         if (isset($_FILES['img'])) {
+            // definis le nom temporaire, le nom de l'img, la taille, et l'erreur
             $tmpName = $_FILES['img']['tmp_name'];
             $name = $_FILES['img']['name'];
             $size = $_FILES['img']['size'];
             $error = $_FILES['img']['error'];
 
             $tabExtension = explode('.', $name);
+            // l'extension est écrit en minuscule
             $extension = strtolower(end($tabExtension));
-
+            // choisis qu'elle type d'image accepter
             $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+            // definis la taille max de l'image
             $maxSize = 5000000;
 
             if (in_array($extension, $extensions) && $size <= $maxSize && $error == 0) {
                 $file = $name . "." . $extension;
+                // dossier ou l'image ce retrouve
                 move_uploaded_file($tmpName, '../../../../../backoffice/admin/modules/presse/img/' . $name);
                 // echo "Image enregistrée";
             } else {
@@ -40,7 +41,6 @@
             }
         }
         // end moving files
-
         // message de sortie
         $msg = 'Created Successfully!';
         // insertion du chemin dans une variable puis concatenation de la variable avec l'image en question (le titre)
@@ -48,7 +48,6 @@
         // execute toute cette partie insertion
         $stmt->execute([$id, $title, $text, $created, $imgpath]);
     }
-
     ?>
 </section>
 
@@ -57,7 +56,7 @@
 <div class="content update">
     <h2>Create Contact</h2>
     <!-- formulaire de recuperation des informations a inscrire dans la BDD -->
-    <!-- Page utiliser + la methode -->
+    <!-- la methode -->
     <form action="create.php" method="post" enctype="multipart/form-data">
         <!--  -->
         <!-- label affiche du texte et input une case a remplir -->
@@ -79,12 +78,10 @@
         <label for="text">date</label>
         <label for="text">texte</label>
 
-        <!-- un calendrier est afficher pour selectioner la date -->
-
+        <!-- un calendrier est afficher pour selectioner automatiquement la date actuel -->
         <input type="datetime-local" name="created" value="<?= date('Y-m-d\TH:i') ?>" id="dat" id="created"><br>
 
         <textarea type="text" name="text" id="text" class="Inputpara"></textarea>
-        <script src="../../../../admin/js/count.js"></script>
   
         <!-- bouton pour envoyer tout le formulaire () -->
         <input type="submit" name="submit" value="Create"> 
