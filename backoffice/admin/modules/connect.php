@@ -46,7 +46,7 @@ function module_header($title)
 	<body>
 	<nav class="navtop">
 	<div>
-		<h1>Back Office </h1>
+		<h1>BackOffice </h1>
 		<a href="../../home.php"><i class="fas fa-home"></i>Home</a>
 		<a href="../../../../admin/modules/users/php/show.php"><i class="fas fa-address-book"></i>Utilisateurs</a>
 		<a href="../../../../admin/modules/presse/php/show.php"><i class="fas fa-user-tie"></i>Flux Activité</a>

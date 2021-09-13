@@ -54,7 +54,7 @@
 <?= module_header('Create') ?>
 
 <div class="content update">
-    <h2>Create Contact</h2>
+    <h2>Create Article</h2>
     <!-- formulaire de recuperation des informations a inscrire dans la BDD -->
     <!-- la methode -->
     <form action="create.php" method="post" enctype="multipart/form-data">

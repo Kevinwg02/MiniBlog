@@ -7,8 +7,8 @@ if (isset($_GET['id'])) {
     // Selection de qui vas être supprimer
     $stmt = $pdo->prepare('SELECT * FROM modulepresse WHERE id = ?');
     $stmt->execute([$_GET['id']]);
-    $contact = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (!$contact) {
+    $articles = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$articles) {
         exit('utilisateur doesn\'t exist with that ID!');
     }
     // confirmation de l'utilisateur
@@ -33,16 +33,15 @@ if (isset($_GET['id'])) {
 <?=module_header('Delete')?>
 
 <div class="content delete">
-	<h2>Delete Article #<?=$contact['id']?></h2>
+	<h2>Delete Article #<?=$articles['id']?></h2>
     <?php if ($msg): ?>
     <p><?=$msg?></p>
     <?php else: ?>
-	<p>Are you sure you want to delete this user #<?=$contact['id']?>?</p>
+	<p>Are you sure you want to delete this user #<?=$articles['id']?>?</p>
     <div class="yesno">
-        <a href="delete.php?id=<?=$contact['id']?>&confirm=yes">Yes</a>
-        <a href="show.php?id=<?=$contact['id']?>&confirm=no">No</a>
+        <a href="delete.php?id=<?=$articles['id']?>&confirm=yes">Yes</a>
+        <a href="show.php?id=<?=$articles['id']?>&confirm=no">No</a>
     </div>
     <?php endif; ?>
 </div>
-
 <?=module_footer()?>

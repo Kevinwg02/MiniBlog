@@ -13,7 +13,7 @@ $stmt->bindValue(':current_page', ($page - 1) * $records_per_page, PDO::PARAM_IN
 $stmt->bindValue(':record_per_page', $records_per_page, PDO::PARAM_INT);
 $stmt->execute();
 // Fetch the records so we can display them in our template.
-$contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$userss = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //suite02
 // Get the total number of utilisateurs, this is so we can determine whether there should be a next and previous button
 $num_contacts = $pdo->query('SELECT COUNT(*) FROM utilisateurs')->fetchColumn();
@@ -40,16 +40,17 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM utilisateurs')->fetchColumn();
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($contacts as $contact) : ?>
+            <?php foreach ($userss as $users) : ?>
                 <tr>
-                    <td><?= $contact['id'] ?></td>
-                    <td><?= $contact['nom'] ?></td>
-                    <td><?= $contact['prenom'] ?></td>
-                    <td><?= $contact['login'] ?></td>
-                    <td><?= $contact['Grade'] ?></td>
+                    <td><?= $users['id'] ?></td>
+                    <td><?= $users['nom'] ?></td>
+                    <td><?= $users['prenom'] ?></td>
+                    <td><?= $users['login'] ?></td>
+                    <td><?= $users['Grade'] ?></td>
+                    <td><?= $users['pass'] ?></td>
                     <td class="actions">
-                        <a href="./update.php?id=<?= $contact['id'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
-                        <a href="./delete.php?id=<?= $contact['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                        <a href="./update.php?id=<?= $users['id'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
+                        <a href="./delete.php?id=<?= $users['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
                     </td>
                 </tr>
             <?php endforeach; ?>

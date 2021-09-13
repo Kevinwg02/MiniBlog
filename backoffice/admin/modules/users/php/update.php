@@ -22,8 +22,8 @@ if (isset($_GET['id'])) {
     // Get the contact from the contacts table
     $stmt = $pdo->prepare('SELECT * FROM utilisateurs WHERE id = ?');
     $stmt->execute([$_GET['id']]);
-    $contact = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (!$contact) {
+    $users = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$users) {
         exit('utilisateurs doesn\'t exist with that ID!');
     }
 } else {
@@ -33,26 +33,26 @@ if (isset($_GET['id'])) {
 <?= module_header('Read') ?>
 
 <div class="content update">
-    <h2>Update Contact #<?= $contact['id'] ?></h2>
-   <form action="update.php?id=<?=$contact['id']?>" method="post">
+    <h2>Update Contact #<?= $users['id'] ?></h2>
+   <form action="update.php?id=<?=$users['id']?>" method="post">
         <label for="id">ID</label>
         <label for="nom">Nom</label>
 
-        <input type="text" name="id" placeholder="1" value="<?= $contact['id'] ?>" id="id">
-        <input type="text" name="nom" placeholder="John Doe" value="<?= $contact['nom'] ?>" id="nom">
+        <input type="text" name="id" placeholder="1" value="<?= $users['id'] ?>" id="id">
+        <input type="text" name="nom" placeholder="John Doe" value="<?= $users['nom'] ?>" id="nom">
 
         <label for="prenom">Prenom</label>
         <label for="login">Login</label>
 
-        <input type="text" name="prenom" value="<?= $contact['prenom'] ?>" id="prenom">
-        <input type="text" name="login" value="<?= $contact['login'] ?>" id="login">
+        <input type="text" name="prenom" value="<?= $users['prenom'] ?>" id="prenom">
+        <input type="text" name="login" value="<?= $users['login'] ?>" id="login">
 
         <label for="pass">pass</label>
          <label for="Grade">Grade</label>
 
-         <input type="text" name="pass" value="<?= $contact['pass'] ?>" id="pass">
+         <input type="text" name="pass" value="<?= $users['pass'] ?>" id="pass">
 
-         <input type="text" name="Grade" value="<?= $contact['Grade'] ?>" id="Grade">
+         <input type="text" name="Grade" value="<?= $users['Grade'] ?>" id="Grade">
 
         <input type="submit" value="Update">
        
