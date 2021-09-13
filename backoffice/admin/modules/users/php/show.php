@@ -13,7 +13,7 @@ $stmt->bindValue(':current_page', ($page - 1) * $records_per_page, PDO::PARAM_IN
 $stmt->bindValue(':record_per_page', $records_per_page, PDO::PARAM_INT);
 $stmt->execute();
 // Fetch the records so we can display them in our template.
-$userss = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //suite02
 // Get the total number of utilisateurs, this is so we can determine whether there should be a next and previous button
 $num_contacts = $pdo->query('SELECT COUNT(*) FROM utilisateurs')->fetchColumn();
@@ -40,7 +40,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM utilisateurs')->fetchColumn();
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($userss as $users) : ?>
+            <?php foreach ($users as $users) : ?>
                 <tr>
                     <td><?= $users['id'] ?></td>
                     <td><?= $users['nom'] ?></td>
