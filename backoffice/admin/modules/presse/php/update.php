@@ -33,7 +33,7 @@ if (isset($_GET['id'])) {
 
 <div class="content update">
     <h2>Update Article #<?= $articles['id'] ?></h2>
-    <form action="update.php?id=<?= $articles['id'] ?>" method="POST">
+     <form action="update.php?id=<?=$articles['id']?>" method="post">
         <label for="id">ID</label>
         <label for="title">Title</label>
 

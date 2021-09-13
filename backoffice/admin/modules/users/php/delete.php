@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
             
         } else {
             // User clicked the "No" button, redirect them back to the read page
-            header('Location: ../show.php');
+            header('Location: ./show.php');
             exit;
         }
     }

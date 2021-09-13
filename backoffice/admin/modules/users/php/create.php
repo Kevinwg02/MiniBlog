@@ -16,7 +16,7 @@ if (!empty($_POST)) {
     $pass = isset($_POST['pass']) ? $_POST['pass'] : '';
     // Insert new record into the utilisateurs table
     $stmt = $pdo->prepare('INSERT INTO utilisateurs VALUES (?, ?, ?, ?, ?, ?)');
-    $stmt->execute([$id, $nom, $prenom, $login, $Grade, $pass]);
+    $stmt->execute([$id, $nom, $prenom, $login, $Grade, md5($pass)]);
     // Output message
     $msg = 'Created Successfully!';
 }
@@ -25,7 +25,7 @@ if (!empty($_POST)) {
 
 <div class="content update">
     <h2>Create utilisateurs</h2>
-    <form action="CreateUtilisateurs.php" method="post">
+    <form action="create.php" method="post">
         <label for="id">ID</label>
         <label for="nom">Nom</label>
 

@@ -48,8 +48,8 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM utilisateurs')->fetchColumn();
                     <td><?= $contact['login'] ?></td>
                     <td><?= $contact['Grade'] ?></td>
                     <td class="actions">
-                        <a href="../update.php?id=<?= $contact['id'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
-                        <a href="../delete.php?id=<?= $contact['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                        <a href="./update.php?id=<?= $contact['id'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
+                        <a href="./delete.php?id=<?= $contact['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
                     </td>
                 </tr>
             <?php endforeach; ?>

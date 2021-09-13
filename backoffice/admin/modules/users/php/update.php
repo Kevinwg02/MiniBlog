@@ -15,8 +15,8 @@ if (isset($_GET['id'])) {
         $Grade = isset($_POST['Grade']) ? $_POST['Grade'] : '';
         $pass = isset($_POST['pass']) ? $_POST['pass'] : '';
         // Update the record
-        $stmt = $pdo->prepare('UPDATE utilisateurs SET id = ?, nom = ?, prenom = ?, login = ?,  Status = ?, Grade = ?, pass = ? WHERE id = ?');
-        $stmt->execute([$id, $nom, $prenom, $login, $Status, $Grade,  $pass, $_GET['id']]);
+        $stmt = $pdo->prepare('UPDATE utilisateurs SET id = ?, nom = ?, prenom = ?, login = ?, Grade = ?, pass = ? WHERE id = ?');
+        $stmt->execute([$id, $nom, $prenom, $login, $Grade,  md5($pass), $_GET['id']]);
         $msg = 'Updated Successfully!';
     }
     // Get the contact from the contacts table
@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
 
 <div class="content update">
     <h2>Update Contact #<?= $contact['id'] ?></h2>
-    <form action="UpdateUtilisateurs.php?id=<?= $contact['id'] ?>" method="post">
+   <form action="update.php?id=<?=$contact['id']?>" method="post">
         <label for="id">ID</label>
         <label for="nom">Nom</label>
 
@@ -47,15 +47,15 @@ if (isset($_GET['id'])) {
         <input type="text" name="prenom" value="<?= $contact['prenom'] ?>" id="prenom">
         <input type="text" name="login" value="<?= $contact['login'] ?>" id="login">
 
-        <label for="Status">Status</label>
         <label for="pass">pass</label>
+         <label for="Grade">Grade</label>
 
-        <input type="int" name="Status" placeholder="Employee" value="<?= $contact['Status'] ?>" id="Status">
-        <input type="text" name="pass" value="<?= $contact['pass'] ?>" id="pass">
+         <input type="text" name="pass" value="<?= $contact['pass'] ?>" id="pass">
 
-        <label for="Grade">Grade</label>
+         <input type="text" name="Grade" value="<?= $contact['Grade'] ?>" id="Grade">
+
         <input type="submit" value="Update">
-        <input type="text" name="Grade" value="<?= $contact['Grade'] ?>" id="Grade">
+       
 
     </form>
     <?php if ($msg) : ?>
