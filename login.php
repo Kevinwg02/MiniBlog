@@ -12,7 +12,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="Frontoffice/css/LoginStyle.css">
+	<link rel="stylesheet" href="frontoffice/css/LoginStyle.css">
 </head>
 
 <body>
